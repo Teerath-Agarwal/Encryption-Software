@@ -1,5 +1,5 @@
 // Project Started: 27 March 2022
-// Last worked on: 1 April 2022
+// Last worked on: 21 April 2022 (bug removed)
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -98,7 +98,7 @@ void display_1(string s)
     ifstream k;
     k.open(s);
     k.unsetf(ios_base::skipws);
-    for (int i=0; i<100; i++)
+    for (int i=0; !k.eof() && i<100; i++)
     {
         k >> t;
         cout << t;
@@ -120,8 +120,6 @@ void display_2(string s, int tc)
     }
     k.close();
     remove(to_char(s));
-    // cout<<"\n\nPress ENTER to Continue ...";
-    // cin.ignore(numeric_limits<streamsize>::max(),'\n');
     return;
 }
 
