@@ -1,5 +1,4 @@
-// Project Started: 27 March 2022
-// Last worked on: 21 April 2022 (bug removed)
+// Sub-part of ES
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -30,28 +29,11 @@ char* to_char(string t)
     return k;
 }
 
-void new_pass(string &p)
-{
-    cout<<"Enter a password for your file: ";
-    cin>>p;
-    system(clear);
-    string check;
-    cout<<"Confirm password: ";
-    cin>>check;
-    system(clear);
-    if (p.compare(check))
-    {
-        cout<<"Passwords don't match! Try again!\n";
-        new_pass(p);
-    }
-    return;
-}
-
-void encrypt(ifstream &inp, string f, string pw)
+void encrypt(ifstream &inp, string f)
 {
     ofstream res;
     char t;
-    int total_char=0, n, pw_len = pw.length(), pw_counter = 0;
+    int total_char=0, n;
     string temp_fn = "temp_file.txt";
 
     res.open(temp_fn);
@@ -72,11 +54,8 @@ void encrypt(ifstream &inp, string f, string pw)
     for(int i=1; i<total_char; i++)
     {
         read >> n;
-        n *= (int)pw[pw_counter++];
-        if (pw_counter==pw_len) pw_counter=0;
-        for (int j=0; j<14; j++)
+        for (int j=0; j<8; j++)
         outp<<((n & 1<<j)>>j);
-        if (!(i%10)) outp<<'\n';
     }
     read.close();
     outp.close();
@@ -90,21 +69,6 @@ string create_str(string f)
     while (f[i]!='.') i--;
     f.insert(i,"_decrypted");
     return f;
-}
-
-void display_1(string s)
-{
-    char t;
-    ifstream k;
-    k.open(s);
-    k.unsetf(ios_base::skipws);
-    for (int i=0; !k.eof() && i<100; i++)
-    {
-        k >> t;
-        cout << t;
-    }
-    k.close();
-    return;
 }
 
 void display_2(string s, int tc)
@@ -123,11 +87,11 @@ void display_2(string s, int tc)
     return;
 }
 
-int decrypt(ifstream &inp, string f, string pw)
+int decrypt(ifstream &inp, string f)
 {
     ofstream res;
     char t;
-    int total_char=0, n=0, bit_counter=0, pw_len = pw.length(), pw_counter = 0;
+    int total_char=0, n=0, bit_counter=0;
     string de_fn = create_str(f);
 
     res.open(de_fn);
@@ -135,10 +99,8 @@ int decrypt(ifstream &inp, string f, string pw)
     {
         inp>>t;
         n |= (t-48)<<bit_counter;
-        if (bit_counter==13)
+        if (bit_counter==7)
         {
-            n /= (int)pw[pw_counter++];
-            if (pw_counter==pw_len) pw_counter=0;
             char x = n;
             res<<x;
             n = 0;
@@ -156,22 +118,6 @@ bool perm_conv(string f, int total_char)
 {
     string de_fn = create_str(f);
     char t;
-    system(clear);
-    cout<<"Displaying the first 100 characters of the file, based on the password enetered.\n\n";
-    // sleep(2);
-    // system(clear);
-    display_1(de_fn);
-    // sleep(2);
-    // system(clear);
-    cout<<"\n\nPress 'Y' to merge this file to original one or 'N' to re-enter the password.\nNote: If you press 'Y' and the password was incorrect, then the information will be lost forever!\nNote 2: You can also check the temporary file with the name: "<<de_fn<<"\n(Y/N)-> ";
-    cin>>t;
-    if (t=='N' || t=='n')
-    {
-        remove(to_char(de_fn));
-        system(clear);
-        cout<<"Re-enter the ";
-        return 1;
-    }
     ifstream read;
     ofstream outp;
     read.open(de_fn);
@@ -189,27 +135,15 @@ bool perm_conv(string f, int total_char)
     return 0;
 }
 
-bool is_encrypted(string s)
-{
-    ifstream t(s);
-    char c;
-    for (int i=0; i<100 && !t.eof(); i++)
-    {
-        t >> c;
-        if (c!='0' && c!='1') return 0;
-    }
-    return 1;
-}
-
 int main()
 {
     while(1)
     {
         short int z;
         ifstream inp;
-        string f, pw;
+        string f;
 
-        cout<<"1. Secure a new file\n2. Display a secured file\n3. Convert a secured file to normal file\n4. Exit\n-> ";
+        cout<<"1. Convert a new file to binary\n2. Display a binary file\n3. Convert a binary file to normal file\n4. Exit\n-> ";
         cin>>z;
         
         if (z>=1 && z<=3)
@@ -236,28 +170,20 @@ int main()
         switch (z)
         {
             case 1:
-                new_pass(pw);
-                encrypt(inp,f,pw);
+                encrypt(inp,f);
                 sleep(1);
                 break;
             case 2:
-                cout<<"Password: ";
-                cin>>pw;
                 system(clear);
-                display_2(create_str(f),decrypt(inp,f,pw));
-                cout<<"\n\n\nFile displayed above is decrypted using the password entered. Incorrect password leads to incorrect decryption.\n\n";
-                cout<<"Press ENTER to Continue ...";
+                display_2(create_str(f),decrypt(inp,f));
+                cout<<"\n\n\nPress ENTER to Continue ...";
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
                 system(clear);
                 break;
             case 3:
-                do
-                {
-                    inp.open(f);
-                    cout<<"Password: ";
-                    cin>>pw;
-                } while(perm_conv(f,decrypt(inp,f,pw)));
+                inp.open(f);
+                perm_conv(f,decrypt(inp,f));
                 sleep(1);
                 system(clear);
                 break;
