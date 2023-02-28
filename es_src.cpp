@@ -1,6 +1,11 @@
+// Project Started: 27 March 2022
+// Last worked on: 26 November 2022 (major update)
 #include "ES.h"
 
 int tc = 0;
+uint64_t int_code1 = 834725;
+uint64_t int_code2 = 140737351116532;
+string str_code = "Safest_passcode_ever@$p@#ker";
 
 string file_name(){
     string f;
@@ -69,7 +74,7 @@ uint8_t* pass_check_util(string pw){
 
 void encrypt(ifstream &inp, string f, string pw){
     string res;
-    uint8_t t,k, pw_counter = 0;
+    uint8_t t,k, pw_counter1 = 0, pw_counter2 = 0;
 
     for (int i=0; i<tc; i++){
         inp>>t;
@@ -86,10 +91,14 @@ void encrypt(ifstream &inp, string f, string pw){
     }
     s = sha(pw);
     for (auto i:res){
-        t = (i^s[pw_order[pw_counter++]]);
+        t = (i^s[pw_order[pw_counter1][pw_counter2++]]);
         outp << hex << (t>>4) << dec;
         outp << hex << (t%(1<<4)) << dec;
-        if (pw_counter>=pwlen) pw_counter = 0;
+        if (pw_counter2>=pwlen) {
+            pw_counter2 = 0;
+            pw_counter1++;
+            if (pw_counter1>=100) pw_counter1 = 0;
+        }
     }
     outp.close();
     cout<<"File encrypted successfully!\n\n";
@@ -140,7 +149,7 @@ int count_alph(ifstream &inp){
 
 string decrypt(ifstream &inp, string f, string pw){
     string res;
-    char t, pw_counter = 0;
+    char t, pw_counter1 = 0, pw_counter2 = 0;
     uint8_t x;
     auto s = sha(pw);
     inp.seekg(2*pwlen);
@@ -150,8 +159,12 @@ string decrypt(ifstream &inp, string f, string pw){
         x <<= 4;
         inp>>t;
         x += hex_to_dec(t);
-        res += (x^s[pw_order[pw_counter++]]);
-        if (pw_counter>=pwlen) pw_counter = 0;
+        res += (x^s[pw_order[pw_counter1][pw_counter2++]]);
+        if (pw_counter2>=pwlen) {
+            pw_counter2 = 0;
+            pw_counter1++;
+            if (pw_counter1>=100) pw_counter1 = 0;
+        }
     }
     inp.close();
     return res;
@@ -161,5 +174,5 @@ void enter(){
     cout<<"\n\nPress enter to continue...";
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
-    return;        
+    return;
 }
