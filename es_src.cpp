@@ -1,5 +1,5 @@
 // Project Started: 27 March 2022
-// Last worked on: 28 March 2022
+// Last worked on: 1 April 2022
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -189,6 +189,18 @@ bool perm_conv(string f, int total_char)
     remove(to_char(de_fn));
     cout<<"File decrypted successfully!\n\n";
     return 0;
+}
+
+bool is_encrypted(string s)
+{
+    ifstream t(s);
+    char c;
+    for (int i=0; i<100 && !t.eof(); i++)
+    {
+        t >> c;
+        if (c!='0' && c!='1') return 0;
+    }
+    return 1;
 }
 
 int main()
