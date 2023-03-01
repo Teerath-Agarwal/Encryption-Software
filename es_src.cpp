@@ -146,9 +146,9 @@ void display2(string t){
         system(clr);
         cout << pr;
         cout<<"\n\n\n(Press ENTER...)";
-        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        cin.ignore((numeric_limits<streamsize>::max)(),'\n');
         if (check){
-            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            cin.ignore((numeric_limits<streamsize>::max)(),'\n');
             check = 0;
         }
     }
@@ -213,8 +213,8 @@ string decrypt(string fl, string pw){
 
 void enter(){
     cout<<"\n\nPress enter to continue...";
-    cin.ignore(numeric_limits<streamsize>::max(),'\n');
-    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+    cin.ignore((numeric_limits<streamsize>::max)(),'\n');
+    cin.ignore((numeric_limits<streamsize>::max)(),'\n');
     return;
 }
 
@@ -258,7 +258,7 @@ uint64_t epoch_conv(uint64_t t){
 void time_lock(string f, string pw){
     uint64_t ts,te;
     string newpw;
-    sleep(1);
+    slp;
     system(clr);
     cout<<"\nEnter the time for which file will be unlocked.\nFormat: DDMMYYHHMM, 24-hour format, no spaces. Enter 0 for no limit.\nStart:  ";
     cin>>ts;

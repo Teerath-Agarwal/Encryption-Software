@@ -78,7 +78,7 @@ int main(){
                 inp.unsetf(ios_base::skipws);
                 encrypt(inp,f,pw+str_code);
                 cout<<"File encrypted successfully!\n\n";
-                sleep(1);
+                slp;
                 break;
             case 2:
                 dec = decrypt(decrypt(inp,pw+str_code),pw);
@@ -87,7 +87,7 @@ int main(){
                 outp << dec;
                 outp.close();
                 cout<<"File decrypted successfully!"<<endl;
-                sleep(1);
+                slp;
                 break;
             case 3:
                 dec = decrypt(decrypt(inp,pw+str_code),pw);
@@ -104,7 +104,7 @@ int main(){
             case 5:
                 f = file_name();
                 cout<<"Enter the contents of the file. To end, type '#'.\n";
-                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                cin.ignore((numeric_limits<streamsize>::max)(),'\n');
                 getline(cin,dec,'#');
                 outp.open(f);
                 outp << dec;
