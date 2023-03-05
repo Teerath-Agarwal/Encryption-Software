@@ -11,7 +11,7 @@ int main(){
         cout<<"1. Encrypt a new file\n2. Decrypt a file\n3. Display an encrypted file\n\n4. Display a file\n5. Create a new file\n6. Remove a file\n\n7. Time-lock a file (Assuming it's aleady encrypted)\n8. Show a time locked file\n\n9. Open ReadMe\n10. Exit\n\n-> ";
         cin>>z;
 
-        if ((z>=1 && z<=4) || z==6 || z==7 || z==8){
+        if (z<9 && z!=5){
             f = file_name();
             inp.open(f);
 
@@ -27,12 +27,8 @@ int main(){
                 inp.open(f);
             }
             
-            if ((z>=1 && z<=4) || z==8){
-                inp.unsetf(ios_base::skipws);
-                tc = count_alph(inp);
-                inp.clear();
-                inp.seekg(0);
-                inp.unsetf(ios_base::skipws);
+            if ((z>=2 && z<=4) || z==8){
+                set_tc(inp);
                 cout<<"File opened successfully!\n";
             }
         }
@@ -49,14 +45,7 @@ int main(){
         switch (z){
             case 1:
                 pw = new_pass();
-                encrypt(inp,f,pw);
-                inp.open(f);
-                inp.unsetf(ios_base::skipws);
-                tc = count_alph(inp);
-                inp.clear();
-                inp.seekg(0);
-                inp.unsetf(ios_base::skipws);
-                encrypt(inp,f,pw+str_code);
+                enc_algo1(inp,f,pw);
                 cout<<"File encrypted successfully!\n\n";
                 slp;
                 break;

@@ -81,4 +81,8 @@ string time_unlock(ifstream &inp, string p, string f);
 
 bool input_pass(string f, string &pw);
 
+void set_tc(ifstream &inp);
+
+void enc_algo1(ifstream &inp, string f, string pw);
+
 #endif

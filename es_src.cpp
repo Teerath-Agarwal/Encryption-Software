@@ -349,3 +349,21 @@ void readme(){
     enter();
     return;
 }
+
+void set_tc(ifstream &inp){
+    inp.unsetf(ios_base::skipws);
+    tc = count_alph(inp);
+    inp.clear();
+    inp.seekg(0);
+    inp.unsetf(ios_base::skipws);
+    return;
+}
+
+void enc_algo1(ifstream &inp, string f, string pw){
+    set_tc(inp);
+    encrypt(inp,f,pw);
+    inp.open(f);
+    set_tc(inp);
+    encrypt(inp,f,pw+str_code);
+    return;
+}
