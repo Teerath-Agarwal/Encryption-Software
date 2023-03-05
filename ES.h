@@ -79,4 +79,6 @@ uint64_t epoch_conv(uint64_t t);
 
 string time_unlock(ifstream &inp, string p, string f);
 
+bool input_pass(string f, string &pw);
+
 #endif

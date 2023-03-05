@@ -42,29 +42,9 @@ int main(){
             return 0;
         }
         
-
-        bool pass = 0;
         if (z==2 || z==3 || z==7 || z==8){
-            bool rep = 1;
-            while (rep){
-                cout<<"Password: ";
-                cin>>pw;
-                if (verify_pass(f,pw+str_code)){
-                    cout<<"Password Verified!\n";
-                    rep = 0;
-                }
-                else {
-                    char bin;
-                    cout<<"Incorrect Password!\nTry Again? (Y/N) -> ";
-                    cin>>bin;
-                    if (bin=='n' || bin=='N'){
-                        rep = 0;
-                        pass = 1;
-                    }
-                }
-            }
+            if (!input_pass(f,pw)) continue;
         }
-        if (pass) continue;
 
         switch (z){
             case 1:

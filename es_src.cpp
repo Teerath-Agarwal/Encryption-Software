@@ -94,6 +94,25 @@ bool verify_pass(string f, string pw){
     return true;
 }
 
+bool input_pass(string f, string &pw){
+    while (1){
+        cout<<"Password: ";
+        cin>>pw;
+        if (verify_pass(f,pw+str_code)){
+            cout<<"Password Verified!\n";
+            return 1;
+        }
+        else {
+            char bin;
+            cout<<"Incorrect Password!\nTry Again? (Y/N) -> ";
+            cin>>bin;
+            if (bin=='n' || bin=='N'){
+                return 0;
+            }
+        }
+    }
+}
+
 void encrypt(ifstream &inp, string f, string pw){
     string res;
     uint8_t t,k, pw_counter1 = 0, pw_counter2 = 0;
