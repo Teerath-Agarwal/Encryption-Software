@@ -80,6 +80,7 @@ int main(){
                 outp.close();
                 break;
             case 6:
+                inp.close();
                 remove(to_char(f));
                 break;
             case 7:
