@@ -182,7 +182,6 @@ int count_alph(ifstream &inp){
         t++;
         inp>>c;
     }
-    // inp.close();
     return t;
 }
 
@@ -230,10 +229,10 @@ string decrypt(string fl, string pw){
     return res;
 }
 
-void enter(){
+void enter(bool flag){
     cout<<"\n\nPress enter to continue...";
     cin.ignore((numeric_limits<streamsize>::max)(),'\n');
-    cin.ignore((numeric_limits<streamsize>::max)(),'\n');
+    if (flag) cin.ignore((numeric_limits<streamsize>::max)(),'\n');
     return;
 }
 

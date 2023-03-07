@@ -65,7 +65,7 @@ string decrypt(ifstream &inp, string pw);
 
 string decrypt(string fl, string pw);
 
-void enter();
+void enter(bool flag = 1);
 
 string edit_name(string f);
 
