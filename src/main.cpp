@@ -16,7 +16,8 @@ int main(){
             inp.open(f);
 
             if (inp.fail()){
-                cout<<"Error! This file does not exist!\n\n";
+                cout<<"\nError! This file does not exist!\n\n";
+                slp;
                 continue;
             }
             
