@@ -24,7 +24,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     text-align: center;
     font-size: 60px;
-    font-weight:bolder;
+    font-weight: bolder;
     color: #333;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     transition: all 0.3s ease;
@@ -33,9 +33,12 @@ body {
 
 .h2 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 32px;
-    font-weight: 700;
-    margin: 10px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    margin: 30px;
 }
 
 .upload-section {
@@ -111,40 +114,47 @@ body {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-.popup {
+#popup_cover {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+}
+
+.popup {
+    display: none;
+    width: 500px;
+    align-self: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.75);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     z-index: 1;
-    max-width: 400px;
-    margin: 100px auto;
-    padding: 20px;
-    background-color: white;
+    padding: 50px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .password-input {
-    margin: 10px;
+    margin: 20px;
     padding: 10px;
     font-size: 16px;
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5 15px rgba(255, 255, 255, 0.5);
 }
 
 .password-strength {
     display: flex;
-    height: 10px;
-    background-color: #ccc;
-    margin: 10px;
-    border-radius: 5px;
-    flex-grow: 1;
-    background-color: red;
-    border-radius: 5px;
+    flex-direction: row;
+    width: 231px;
+    height: 8px;
+    margin-bottom: 10px;
 }
 
 span {
@@ -156,18 +166,20 @@ span {
 #password-match {
     display: none;
     margin: 10px;
+    margin-top: 0px;
     color: red;
 }
 
 .submit-button {
     display: block;
-    margin-top: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
+    margin-top: 30px;
+    padding: 15px 30px;
+    font-size: 20px;
     font-weight: 700;
     color: white;
     background-color: #4CAF50;
     border: none;
+    outline: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
@@ -175,40 +187,19 @@ span {
 
 .submit-button:hover {
     background-color: #45a049;
-    transform: scale(1.1);
+    transform: scale(1.03);
 }
 
 #processing {
     display: none;
     position: fixed;
     bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
     font-size: 24px;
     font-weight: 700;
     color: white;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 15px 30px;
     border-radius: 5px;
     z-index: 1;
-}
-
-.download-button {
-    display: none;
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 18px;
-    font-weight: 700;
-    color: white;
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.download-button:hover {
-    background-color: #45a049;
-    transform: scale(1.1);
 }

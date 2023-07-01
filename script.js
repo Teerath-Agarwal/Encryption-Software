@@ -1,8 +1,10 @@
 function showErrorPopup() {
-    document.getElementById("error-popup").style.display = "block";
+    document.getElementById("error-popup").style.display = "flex";
+    document.getElementById("popup_cover").style.display = "flex";
 }
 
 function closeErrorPopup() {
+    document.getElementById("popup_cover").style.display = "none";
     document.getElementById("error-popup").style.display = "none";
 }
 
@@ -15,7 +17,8 @@ function showEncryptPopup() {
         return;
     }
 
-    document.getElementById("encrypt-popup").style.display = "block";
+    document.getElementById("popup_cover").style.display = "flex";
+    document.getElementById("encrypt-popup").style.display = "flex";
 }
 
 function showDecryptPopup() {
@@ -27,7 +30,8 @@ function showDecryptPopup() {
         return;
     }
 
-    document.getElementById("decrypt-popup").style.display = "block";
+    document.getElementById("popup_cover").style.display = "flex";
+    document.getElementById("decrypt-popup").style.display = "flex";
 }
 
 function checkPasswordStrength(password) {
@@ -54,10 +58,10 @@ function checkPasswordMatch() {
     var passwordMatch = document.getElementById("password-match");
 
     if (password !== confirmPassword) {
-        passwordMatch.style.display = "block";
+        passwordMatch.style.display = "flex";
     } else {
         passwordMatch.style.display = "none";
-        document.getElementById("submit-button").style.display = "block";
+        document.getElementById("submit-button").style.display = "flex";
     }
 }
 
@@ -72,7 +76,7 @@ function submitDecryption() {
 }
 
 function sendToBackend(password) {
-    document.getElementById("processing").style.display = "block";
+    document.getElementById("processing").style.display = "flex";
 
     setTimeout(function () {
         document.getElementById("processing").style.display = "none";
