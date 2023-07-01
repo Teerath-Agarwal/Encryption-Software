@@ -59,11 +59,15 @@ function checkPasswordMatch() {
 function submitEncryption() {
     var password = document.getElementById("confirm-password").value;
     sendToBackend(password);
+    document.getElementById("popup_cover").style.display = "none";
+    document.getElementById("encrypt-popup").style.display = "none";
 }
 
 function submitDecryption() {
     var password = document.getElementById("decrypt-password").value;
     sendToBackend(password);
+    document.getElementById("popup_cover").style.display = "none";
+    document.getElementById("decrypt-popup").style.display = "none";
 }
 
 function sendToBackend(password) {
@@ -74,14 +78,3 @@ function sendToBackend(password) {
         showDownloadButton();
     }, 2000);
 }
-
-// function showDownloadButton() {
-//     var downloadButton = document.createElement("a");
-//     downloadButton.setAttribute("href", "#");
-//     downloadButton.setAttribute("download", "encrypted_files.zip");
-//     downloadButton.innerText = "Download";
-//     downloadButton.classList.add("download-button");
-
-//     var container = document.getElementsByClassName("container")[0];
-//     container.appendChild(downloadButton);
-// }
