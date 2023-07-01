@@ -1,3 +1,5 @@
+const ps_bars = document.querySelectorAll('span');
+
 function showErrorPopup() {
     document.getElementById("error-popup").style.display = "flex";
     document.getElementById("popup_cover").style.display = "flex";
@@ -35,21 +37,10 @@ function showDecryptPopup() {
 }
 
 function checkPasswordStrength(password) {
-    var passwordStrength = document.getElementById("password-strength");
-    var segments = Array.from(passwordStrength.children);
-
-    segments.forEach(function (segment, index) {
-        if (index < password.length) {
-            segment.style.backgroundColor = getColor(index);
-        } else {
-            segment.style.backgroundColor = "";
-        }
+    let color = password.length < 4 ? "#FF0000" : (password.length < 6 ? "yellow" : "#00FF00");    
+    ps_bars.forEach((segment, index) => {
+        segment.style.backgroundColor = index < password.length ? color : "rgb(0, 0, 0, 0)";
     });
-}
-
-function getColor(index) {
-    var gradient = Math.round((index / 8) * 255);
-    return "rgb(" + gradient + ", " + (255 - gradient) + ", 0)";
 }
 
 function checkPasswordMatch() {
@@ -84,13 +75,13 @@ function sendToBackend(password) {
     }, 2000);
 }
 
-function showDownloadButton() {
-    var downloadButton = document.createElement("a");
-    downloadButton.setAttribute("href", "#");
-    downloadButton.setAttribute("download", "encrypted_files.zip");
-    downloadButton.innerText = "Download";
-    downloadButton.classList.add("download-button");
+// function showDownloadButton() {
+//     var downloadButton = document.createElement("a");
+//     downloadButton.setAttribute("href", "#");
+//     downloadButton.setAttribute("download", "encrypted_files.zip");
+//     downloadButton.innerText = "Download";
+//     downloadButton.classList.add("download-button");
 
-    var container = document.getElementsByClassName("container")[0];
-    container.appendChild(downloadButton);
-}
+//     var container = document.getElementsByClassName("container")[0];
+//     container.appendChild(downloadButton);
+// }
