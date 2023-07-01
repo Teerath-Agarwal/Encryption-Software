@@ -89,4 +89,4 @@ function showDownloadButton() {
 
     var container = document.getElementsByClassName("container")[0];
     container.appendChild(downloadButton);
-}  
+}

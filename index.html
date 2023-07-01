@@ -4,70 +4,63 @@
 <head>
     <title>Encrypt it!</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="script.js"></script>
 </head>
 
 <body>
-    <div class="container">
-        <div class="h1">Encrypt it!</div>
-
+    <div class="h1">Encrypt it!</div>
+    <div class="upload">
         <div class="upload-section">
             <div class="h2">Upload a File</div>
             <input type="file" id="file-upload">
-            <label for="file-upload">Choose File</label>
+            <!-- <label for="file-upload">Choose File</label> -->
         </div>
-
+        <div class="txt">OR</div>
         <div class="upload-section">
             <div class="h2">Upload a Folder</div>
             <input type="file" id="folder-upload" webkitdirectory directory multiple>
-            <label for="folder-upload">Choose Folder</label>
-        </div>
-
-        <button class="encrypt-button" onclick="showEncryptPopup()">Encrypt</button>
-        <button class="decrypt-button" onclick="showDecryptPopup()">Decrypt</button>
-
-        <div id="error-popup" class="popup">
-            <div class="popup-content">
-                <div class="h2">Error</div>
-                <p>Please upload a file or folder before proceeding.</p>
-                <button class="submit-button" onclick="closeErrorPopup()">OK</button>
-            </div>
-        </div>
-
-        <div id="encrypt-popup" class="popup">
-            <div class="popup-content">
-                <div class="h2">Enter Password</div>
-                <input type="password" id="password" class="password-input" placeholder="Enter password"
-                    onkeyup="checkPasswordStrength(this.value)">
-                <div id="password-strength" class="password-strength">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <input type="password" id="confirm-password" class="password-input" placeholder="Confirm password"
-                    onkeyup="checkPasswordMatch()">
-                <p id="password-match" class="password-match">Passwords do not match.</p>
-                <button id="submit-button" class="submit-button" onclick="submitEncryption()">Submit</button>
-            </div>
-        </div>
-
-        <div id="decrypt-popup" class="popup">
-            <div class="popup-content">
-                <div class="h2">Enter Password</div>
-                <input type="password" id="decrypt-password" class="password-input" placeholder="Enter password">
-                <button class="submit-button" onclick="submitDecryption()">Submit</button>
-            </div>
-        </div>
-
-        <div id="processing" class="processing">
-            Please Wait . . .
+            <!-- <label for="folder-upload">Choose Folder</label> -->
         </div>
     </div>
+    
+    <div class="buttons">
+        <button class="enc_dec" onclick="showEncryptPopup()">Encrypt</button>
+        <button class="enc_dec" onclick="showDecryptPopup()">Decrypt</button>
+    </div>
+    
+    <div id="error-popup" class="popup">
+        <div class="h2">Error</div>
+        <p>Please upload a file or folder before proceeding!</p>
+        <button class="submit-button" onclick="closeErrorPopup()">OK</button>
+    </div>
+    
+    <div id="encrypt-popup" class="popup">
+        <div class="h2">Enter Password</div>
+        <input type="password" id="password" class="password-input" placeholder="Enter password" onkeyup="checkPasswordStrength(this.value)">
+        <div class="password-strength">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <input type="password" id="confirm-password" class="password-input" placeholder="Confirm password" onkeyup="checkPasswordMatch()">
+        <div id="password-match">Passwords do not match.</div>
+        <button id="submit-button" class="submit-button" onclick="submitEncryption()">Submit</button>
+    </div>
+    
+    <div id="decrypt-popup" class="popup">
+        <div class="h2">Enter Password</div>
+        <input type="password" id="decrypt-password" class="password-input" placeholder="Enter password">
+        <button class="submit-button" onclick="submitDecryption()">Submit</button>
+    </div>
+    
+    <div id="processing">
+        Please Wait . . .
+    </div>
+    <script src="script.js"></script>
 </body>
 
 </html>
