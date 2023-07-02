@@ -73,14 +73,14 @@ body {
     background-color: #777;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
     text-align: center;
     outline: none;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 input {
-    margin: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
 }
 
 .buttons {
