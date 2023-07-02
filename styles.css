@@ -70,16 +70,17 @@ body {
     font-weight: 700;
     margin: 50px;
     color: white;
-    background-color: #4CAF50;
+    background-color: #777;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
+    text-align: center;
+    outline: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.upload-section:hover {
-    background-color: #45a049;
-    transform: scale(1.1);
+input {
+    margin: 10px;
 }
 
 .buttons {
