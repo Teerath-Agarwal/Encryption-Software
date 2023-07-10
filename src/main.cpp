@@ -1,6 +1,34 @@
 #include "ES.h"
 
-int main(){
+int main(int argc, char* argv[]){
+    // Format: ./a.exe <filepath> <password> <mode>
+    if (argc > 1){
+        string dec;
+        string f = argv[1];
+        string pw = argv[2];
+        string mode = argv[3];
+        ofstream outp;
+        ifstream inp;
+        inp.open(f);
+        if (inp.fail()) return 1;
+        if (mode=="1"){ // Mode 1 is encryption
+            enc_algo1(inp,f,pw);
+            return 0;
+        }
+        else if (mode=="2"){ // Mode 2 is decryption
+            set_tc(inp);
+            if (!verify_pass(f,pw+str_code))
+                return 2;
+            dec = decrypt(decrypt(inp,pw+str_code),pw);
+            remove(to_char(f));
+            outp.open(f);
+            outp << dec;
+            outp.close();
+            return 0;
+        }
+        else return 3;
+    }
+    else
     while(1){
         uint16_t z;
         ifstream inp;

@@ -75,6 +75,5 @@ function sendToBackend(password) {
 
     setTimeout(function () {
         document.getElementById("processing").style.display = "none";
-        showDownloadButton();
     }, 2000);
 }
