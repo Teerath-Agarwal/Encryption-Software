@@ -12,9 +12,10 @@ function closeErrorPopup() {
 
 function showEncryptPopup() {
     var fileUpload = document.getElementById("file-upload");
-    var folderUpload = document.getElementById("folder-upload");
+    // var folderUpload = document.getElementById("folder-upload");
 
-    if (!fileUpload.files.length && !folderUpload.files.length) {
+    // if (!fileUpload.files.length && !folderUpload.files.length) {
+    if (!fileUpload.files.length) {
         showErrorPopup();
         return;
     }
@@ -25,9 +26,10 @@ function showEncryptPopup() {
 
 function showDecryptPopup() {
     var fileUpload = document.getElementById("file-upload");
-    var folderUpload = document.getElementById("folder-upload");
+    // var folderUpload = document.getElementById("folder-upload");
 
-    if (!fileUpload.files.length && !folderUpload.files.length) {
+    // if (!fileUpload.files.length && !folderUpload.files.length) {
+    if (!fileUpload.files.length) {
         showErrorPopup();
         return;
     }

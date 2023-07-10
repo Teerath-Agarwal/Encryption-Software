@@ -8,22 +8,26 @@
 
 <body>
     <div class="h1">Encrypt it!</div>
-    <div class="upload">
-        <div class="upload-section">
-            <div class="h2">Upload a File</div>
-            <input type="file" id="file-upload">
-        </div>
-        <div class="txt">OR</div>
-        <div class="upload-section">
-            <div class="h2">Upload a Folder</div>
-            <input type="file" id="folder-upload" webkitdirectory directory multiple>
-        </div>
-    </div>
 
-    <div class="buttons">
-        <button class="enc_dec" onclick="showEncryptPopup()">Encrypt</button>
-        <button class="enc_dec" onclick="showDecryptPopup()">Decrypt</button>
-    </div>
+    <!-- <input type="file" id="fileInput" name="files" multiple>
+        <button type="button" onclick="submitForm('upload_a')">Submit A</button>
+        <button type="button" onclick="submitForm('upload_b')">Submit B</button> -->
+        <div class="upload upload-section">
+            <div class="h2">Upload File(s)</div>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <input type="file" id="file-upload" name="files" multiple>
+            </form>
+        </div>
+        <!-- <div class="txt">OR</div>
+            <div class="upload-section">
+                <div class="h2">Upload a Folder</div>
+            <input type="file" id="folder-upload" webkitdirectory directory multiple>
+        </div> -->
+        
+        <div class="buttons">
+            <button class="enc_dec" onclick="showEncryptPopup()">Encrypt</button>
+            <button class="enc_dec" onclick="showDecryptPopup()">Decrypt</button>
+        </div>
 
     <div id="popup_cover">
         <div id="error-popup" class="popup">
