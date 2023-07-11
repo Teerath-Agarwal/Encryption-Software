@@ -170,19 +170,19 @@ app.post('/upload', (req, res) => {
         // fs.unlinkSync(path.join(__dirname, executable_file));
     }
 
-    app.post('/delete', (req, res) => {
-        const filename = 'result.zip';
-        fs.unlink(path.join(__dirname, filename), (err) => {
-            if (err) {
-                console.log('Error deleting file:', err);
-                return res.status(500).send('An error occurred during file deletion.');
-            }
-            console.log('File deleted:', filename);
-            res.sendStatus(200);
-        });
-    });
 });
 // });
+app.post('/delete', (req, res) => {
+    const filename = 'result.zip';
+    fs.unlink(path.join(__dirname, filename), (err) => {
+        if (err) {
+            console.log('Error deleting file:', err);
+            return res.status(500).send('An error occurred during file deletion.');
+        }
+        console.log('File deleted:', filename);
+        res.sendStatus(200);
+    });
+});
 
 // app.post('/enc', uploadHandler('myalgo_a'));
 // app.post('/dec', uploadHandler('myalgo_b'));
