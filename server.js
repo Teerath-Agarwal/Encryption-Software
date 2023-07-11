@@ -5,29 +5,16 @@ const fs = require('fs');
 const { exec } = require('child_process');
 const path = require('path');
 
+const port = 3000;
 const app = express();
 app.use(fileUpload());
+// Static Files
+app.use(express.static('public'));
 const executable_file = 'a.exe';
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-    fs.access(executable_file, fs.constants.F_OK, (err) => {
-        if (err) {
-            console.log(`File "${executable_file}" does not exist. Running "make" command...`);
-
-            exec('make', (error, stdout, stderr) => {
-                if (error) {
-                    console.error('Error running "make" command:', error);
-                    return;
-                }
-
-                console.log('"make" command executed successfully.');
-            });
-        } else {
-            console.log(`File "${executable_file}" exists.`);
-        }
-    });
-});
+// app.get('/', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'index.html'));
+// });
 
 app.post('/upload', (req, res) => {
     // function uploadHandler(executable_file) {
@@ -159,6 +146,22 @@ app.post('/upload', (req, res) => {
 // app.post('/enc', uploadHandler('myalgo_a'));
 // app.post('/dec', uploadHandler('myalgo_b'));
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+app.listen(port, () => {
+    console.log('Server is running on port ' + port);
+    fs.access(executable_file, fs.constants.F_OK, (err) => {
+        if (err) {
+            console.log(`File "${executable_file}" does not exist. Running "make" command...`);
+
+            exec('make', (error, stdout, stderr) => {
+                if (error) {
+                    console.error('Error running "make" command:', error);
+                    return;
+                }
+
+                console.log('"make" command executed successfully.');
+            });
+        } else {
+            console.log(`File "${executable_file}" exists.`);
+        }
+    });
 });

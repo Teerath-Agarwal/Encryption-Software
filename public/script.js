@@ -76,7 +76,7 @@ function sendToBackend(password, mode) {
     document.getElementById("processing").style.display = "flex";
 
     const form = document.getElementById('uploadForm');
-    const fileInput = document.getElementById('fileInput');
+    const fileInput = document.getElementById('file-upload');
     const formData = new FormData(form);
 
     formData.append('password', password);

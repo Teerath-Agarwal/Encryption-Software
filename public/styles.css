@@ -9,7 +9,7 @@ html {
 }
 
 body {
-    background-image: url('./public/background.jpg');
+    background-image: url('background.jpg');
     opacity: 100%;
     background-size: cover;
     background-position: center;
