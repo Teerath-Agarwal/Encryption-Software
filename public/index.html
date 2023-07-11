@@ -32,7 +32,7 @@
     <div id="popup_cover">
         <div id="error-popup" class="popup">
             <div class="h2">Error</div>
-            <p>Please upload a file before proceeding!</p>
+            <p id="error-txt"></p>
             <button class="submit-button" onclick="closeErrorPopup()">OK</button>
         </div>
 
@@ -59,6 +59,7 @@
         <div id="decrypt-popup" class="popup">
             <div class="h2">Enter Password</div>
             <input type="password" id="decrypt-password" class="password-input" placeholder="Enter password">
+            <div id="password-match">Passwords do not match.</div>
             <button class="submit-button" onclick="submitDecryption()">Submit</button>
         </div>
 

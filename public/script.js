@@ -1,6 +1,12 @@
 const ps_bars = document.querySelectorAll('span');
+const e0 = 'Please upload a file before proceeding!';
+const e1 = "The file name(s) contains spaces";
+const e2 = "Incorrect password!";
+const e3 = "Unknown error occurred!!";
+const pi = document.querySelectorAll('.password-input');
 
-function showErrorPopup() {
+function showErrorPopup(error) {
+    document.getElementById("error-txt").innerText = error;
     document.getElementById("error-popup").style.display = "flex";
     document.getElementById("popup_cover").style.display = "flex";
 }
@@ -16,7 +22,7 @@ function showEncryptPopup() {
 
     // if (!fileUpload.files.length && !folderUpload.files.length) {
     if (!fileUpload.files.length) {
-        showErrorPopup();
+        showErrorPopup(e0);
         return;
     }
 
@@ -30,7 +36,7 @@ function showDecryptPopup() {
 
     // if (!fileUpload.files.length && !folderUpload.files.length) {
     if (!fileUpload.files.length) {
-        showErrorPopup();
+        showErrorPopup(e0);
         return;
     }
 
@@ -61,18 +67,18 @@ function checkPasswordMatch() {
 function submitEncryption() {
     var password = document.getElementById("confirm-password").value;
     sendToBackend(password, 1);
-    document.getElementById("popup_cover").style.display = "none";
-    document.getElementById("encrypt-popup").style.display = "none";
 }
 
 function submitDecryption() {
     var password = document.getElementById("decrypt-password").value;
     sendToBackend(password, 2);
-    document.getElementById("popup_cover").style.display = "none";
-    document.getElementById("decrypt-popup").style.display = "none";
 }
 
 function sendToBackend(password, mode) {
+    pi.forEach((inputbox) => inputbox.value = '');
+    ps_bars.forEach((segment) => {
+        segment.style.backgroundColor = "rgb(0, 0, 0, 0)";
+    });
     document.getElementById("processing").style.display = "flex";
 
     const form = document.getElementById('uploadForm');
@@ -87,7 +93,22 @@ function sendToBackend(password, mode) {
         body: formData
     })
         .then(response => {
+            // Reset the form
+            fileInput.value = null;
             if (!response.ok) {
+                // if (response.status == 300) {
+                //     showErrorPopup(e1);
+                //     // throw new Error(e1);
+                // }
+                // else if (response.status == 400) {
+                //     showErrorPopup(e2);
+                //     // throw new Error(e2);
+                // }
+                // else if (response.status == 600) {
+                //     showErrorPopup(e3);
+                //     // throw new Error(e3);
+                // }
+                // else if (response.status == 500) {
                 throw new Error('Upload failed.');
             }
             return response.blob();
@@ -99,10 +120,6 @@ function sendToBackend(password, mode) {
             link.download = 'result.zip';
             link.click();
             URL.revokeObjectURL(downloadUrl);
-
-            // Reset the form
-            fileInput.value = null;
-
 
             // Delete the result.zip file
             fetch('/delete', {
@@ -119,12 +136,26 @@ function sendToBackend(password, mode) {
                 .catch(error => {
                     console.error('Error:', error);
                 });
+
+            document.getElementById("processing").style.display = "none";
+            document.getElementById("popup_cover").style.display = "none";
+            if (mode == 1)
+                document.getElementById("encrypt-popup").style.display = "none";
+            else
+                document.getElementById("decrypt-popup").style.display = "none";
         })
         .catch(error => {
             console.error('Error:', error);
+            document.getElementById("processing").style.display = "none";
+            document.getElementById("popup_cover").style.display = "none";
+            if (mode == 1)
+                document.getElementById("encrypt-popup").style.display = "none";
+            else
+                document.getElementById("decrypt-popup").style.display = "none";
+            alert("Error: Ensure the following:\n1.) The file name does not contain spaces\n2.) The file name has some non empty extension\n3.) Password  must be correct")
         });
 
-    setTimeout(function () {
-        document.getElementById("processing").style.display = "none";
-    }, 2000);
+    // setTimeout(function () {
+    //     document.getElementById("processing").style.display = "none";
+    // }, 2000);
 }

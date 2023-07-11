@@ -68,14 +68,31 @@ app.post('/upload', (req, res) => {
     const promises = filePaths.map((filePath) => {
         return new Promise((resolve, reject) => {
             const command = `./${executable_file} ${filePath} ${password} ${mode}`;
-            exec(command, (error, stdout, stderr) => {
+
+            const childProcess = exec(command, (error, stdout, stderr) => {
                 if (error) {
                     console.error(`Error executing ${executable_file}:`, error);
                     reject(error);
+                    // const code = error.code;
+                    // if (code === 1) {
+                    //     return res.status(300).send('src error!');
+                    // }
+                    // else if (code === 2) {
+                    //     return res.status(400).send('src error!');
+                    // }
+                    // else {
+                    //     return res.status(600).send('src error!');
+                    // }
                 } else {
                     resolve();
                 }
             });
+
+            // childProcess.on('close', (code) => {
+            //     console.log(`Child process exited with code: ${code}`);
+            //     if (code !== 0) {
+            //     }
+            // });
         });
     });
 
@@ -117,14 +134,38 @@ app.post('/upload', (req, res) => {
     // });
 
     function cleanUp() {
-        if (Array.isArray(files)) {
-            for (const file of files) {
-                fs.unlinkSync(path.join(uploadPath, file.name));
-            }
-        } else {
-            fs.unlinkSync(path.join(uploadPath, files.name));
-        }
+        // if (Array.isArray(files)) {
+        //     for (const file of files) {
+        //         fs.unlinkSync(path.join(uploadPath, file.name));
+        //     }
+        // } else {
+        //     fs.unlinkSync(path.join(uploadPath, files.name));
+        // }
+        // Function to recursively delete a directory
+        const deleteFolderRecursive = (folderPath) => {
+            if (fs.existsSync(folderPath)) {
+                fs.readdirSync(folderPath).forEach((file) => {
+                    const curPath = path.join(folderPath, file);
 
+                    if (fs.lstatSync(curPath).isDirectory()) {
+                        // Recursively delete subdirectories
+                        deleteFolderRecursive(curPath);
+                    } else {
+                        // Delete files
+                        fs.unlinkSync(curPath);
+                    }
+                });
+
+                // Delete the empty directory
+                fs.rmdirSync(folderPath);
+                console.log(`Folder "${folderPath}" deleted successfully.`);
+            } else {
+                console.log(`Folder "${folderPath}" does not exist.`);
+            }
+        };
+
+        // Call the function to delete the folder
+        deleteFolderRecursive(uploadPath);
         // fs.unlinkSync(path.join(__dirname, 'result.zip'));
         // fs.unlinkSync(path.join(__dirname, executable_file));
     }
@@ -133,7 +174,7 @@ app.post('/upload', (req, res) => {
         const filename = 'result.zip';
         fs.unlink(path.join(__dirname, filename), (err) => {
             if (err) {
-                console.error('Error deleting file:', err);
+                console.log('Error deleting file:', err);
                 return res.status(500).send('An error occurred during file deletion.');
             }
             console.log('File deleted:', filename);
