@@ -1,4 +1,7 @@
-.vscode/
+result.zip
 *.exe
 *.bin
+.vscode/
 public/
+node_modules/
+uploads/
