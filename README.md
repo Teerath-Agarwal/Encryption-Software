@@ -1,7 +1,10 @@
 # Encryption-Software
 This is a software to encrypt and decrypt files, wth ultra high security which none other can provide. If you lose the password, these is absolutely no way to get your data back! NO WAY! (Honestly, I doubt if the world's best hackers can crack this algorithm).
+
 Don't believe in anyone, except yourself for securing your utmost important files. Most of the softwares out there store your data with security risks. Some directly store password, some use password protected database. More or less, each one of them has some vulnerability.
+
 But this one is truely different. The two encryption algorithm uses SHA-256 one way hashing as the underlying security mechanism. If you wanna break it, break SHA-256 first!
+
 For this reason, I particularly suggest to either use one single password (atleast 8 characters) or store all your passwrod in a file and lock it with one password which you must remember whatsoever. I myself use the latter method find it safe.
 
 ## Table of Contents
@@ -26,7 +29,7 @@ For this reason, I particularly suggest to either use one single password (atlea
 6. Linux or MacOS
 
 Run the following commands, if you don't have the above dependecies already installed.
-1. For Linux - Fedora (You may use get-apt instead of dnf in case of Ubuntu, similarly for other distributions) 
+1. For Linux - Fedora (You may use get-apt instead of dnf in case of Ubuntu, similarly for other distributions):
    ```shell
    sudo dnf update
    sudo dnf install git
@@ -34,7 +37,7 @@ Run the following commands, if you don't have the above dependecies already inst
    sudo dnf install make
    sude dnf install nodejs npm
    ```
-2. For MacOS
+2. For MacOS:
    ```shell
    xcode-select --install
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -43,7 +46,8 @@ Run the following commands, if you don't have the above dependecies already inst
    brew install make
    brew install node
    ```
-3. For windows
+3. For windows:
+   
    Manually install minGW C++ compiler, make, git and nodeJS npm.
    The open git bash for further installation.
 
@@ -55,14 +59,14 @@ Run the following commands, if you don't have the above dependecies already inst
 3. Execute $ make and $ npm install.
 4. To start the application, run $ npm start.
 
-  Alternatively, run the following commands:
-  ```shell
-  git clone https://github.com/Teerath-Agarwal/Encryption-Software.git
-  cd Encryption-Software
-  make
-  npm install
-  npm start
-  ```
+     Alternatively, run the following commands:
+     ```shell
+     git clone https://github.com/Teerath-Agarwal/Encryption-Software.git
+     cd Encryption-Software
+     make
+     npm install
+     npm start
+     ```
 
 5. To stop the execution, either kill the terminal or press Ctrl + C.
 6. To start again, navigate inside the folder Encryption-Software, and run:
