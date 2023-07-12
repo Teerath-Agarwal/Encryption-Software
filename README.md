@@ -3,9 +3,9 @@ This is a software to encrypt and decrypt files, wth ultra high security which n
 
 Don't believe in anyone, except yourself for securing your utmost important files. Most of the softwares out there store your data with security risks. Some directly store password, some use password protected database. More or less, each one of them has some vulnerability.
 
-But this one is truely different. The two encryption algorithm uses SHA-256 one way hashing as the underlying security mechanism. If you wanna break it, break SHA-256 first!
+But this one is truely different. The two way encryption algorithm uses SHA-256 one way hashing as the underlying security mechanism. If you wanna break it, break SHA-256 first!
 
-For this reason, I particularly suggest to either use one single password (atleast 8 characters) or store all your passwrod in a file and lock it with one password which you must remember whatsoever. I myself use the latter method find it safe.
+For this reason, I particularly suggest to either use one single password (atleast 8 characters) or store all your passwords in a file and lock it with one password which you must remember whatsoever. I myself use the latter method as I find it safe.
 
 ## Table of Contents
 
@@ -81,8 +81,8 @@ Run the following commands, if you don't have the above dependecies already inst
 3. Click on 'Encrypt' button.
 4. Enter password and click submit.
 5. Download the 'result.zip' file. Extract the contents
-6. These are the encrypted files. If you change its content even slightly, it will probably corrupt instantly.
+6. These are the encrypted files. If you change their content even slightly, then the files will be corrupted for sure.
 7. To decrypt, select those files to upload, (the actual encrypted files, not the .zip file)
 8. Enter correct password. Click submit.
-9. Save the result .zip file. Extract the contents.
+9. Save the result.zip file. Extract the contents.
 10. The extracted content will consist of the original decrypted files. Thank You!
