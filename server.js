@@ -105,7 +105,7 @@ app.post('/upload', (req, res) => {
             });
 
             output.on('close', () => {
-                console.log('Result archive created.');
+                // console.log('Result archive created.');
                 res.download('result.zip', 'result.zip', (err) => {
                     if (err) {
                         console.error('Error sending result:', err);
@@ -147,7 +147,7 @@ app.post('/upload', (req, res) => {
                 });
 
                 fs.rmdirSync(folderPath);
-                console.log(`Folder "${folderPath}" deleted successfully.`);
+                // console.log(`Folder "${folderPath}" deleted successfully.`);
             } else {
                 console.log(`Folder "${folderPath}" does not exist.`);
             }
@@ -164,7 +164,7 @@ app.post('/delete', (req, res) => {
             console.log('Error deleting file:', err);
             return res.status(500).send('An error occurred during file deletion.');
         }
-        console.log('File deleted:', filename);
+        // console.log('File deleted:', filename);
         res.sendStatus(200);
     });
 });
