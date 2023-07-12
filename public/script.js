@@ -18,9 +18,6 @@ function closeErrorPopup() {
 
 function showEncryptPopup() {
     var fileUpload = document.getElementById("file-upload");
-    // var folderUpload = document.getElementById("folder-upload");
-
-    // if (!fileUpload.files.length && !folderUpload.files.length) {
     if (!fileUpload.files.length) {
         showErrorPopup(e0);
         return;
@@ -32,9 +29,6 @@ function showEncryptPopup() {
 
 function showDecryptPopup() {
     var fileUpload = document.getElementById("file-upload");
-    // var folderUpload = document.getElementById("folder-upload");
-
-    // if (!fileUpload.files.length && !folderUpload.files.length) {
     if (!fileUpload.files.length) {
         showErrorPopup(e0);
         return;
@@ -93,7 +87,6 @@ function sendToBackend(password, mode) {
         body: formData
     })
         .then(response => {
-            // Reset the form
             fileInput.value = null;
             if (!response.ok) {
                 // if (response.status == 300) {
@@ -121,7 +114,6 @@ function sendToBackend(password, mode) {
             link.click();
             URL.revokeObjectURL(downloadUrl);
 
-            // Delete the result.zip file
             fetch('/delete', {
                 method: 'POST',
                 headers: {
@@ -154,8 +146,4 @@ function sendToBackend(password, mode) {
                 document.getElementById("decrypt-popup").style.display = "none";
             alert("Error: Ensure the following:\n1.) The file name does not contain spaces\n2.) The file name has some non empty extension\n3.) Password  must be correct")
         });
-
-    // setTimeout(function () {
-    //     document.getElementById("processing").style.display = "none";
-    // }, 2000);
 }
