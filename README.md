@@ -35,7 +35,7 @@ Run the following commands, if you don't have the above dependecies already inst
    sudo dnf install git
    sudo dnf install gcc
    sudo dnf install make
-   sude dnf install nodejs npm
+   sudo dnf install nodejs npm
    ```
 2. For MacOS:
    ```shell
