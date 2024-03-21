@@ -5,7 +5,7 @@
 #define ES_H
 
 #include <iostream>
-#include <math.h>
+#include <cmath>
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -14,6 +14,7 @@
 #include <vector>
 #include <ctime>
 #include <cstdlib>
+#include <cstdint>
 #include "SHA256.h"
 using namespace std;
 
