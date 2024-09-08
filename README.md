@@ -1,11 +1,7 @@
 # Encryption-Software
-This is a software to encrypt and decrypt files, wth ultra high security which none other can provide. If you lose the password, these is absolutely no way to get your data back! NO WAY! (Honestly, I doubt if the world's best hackers can crack this algorithm).
+This is a software to encrypt and decrypt files, wth ultra high security which none other can provide. If you lose the password, these is absolutely no way to get your data back!
 
-Don't believe in anyone, except yourself for securing your utmost important files. Most of the softwares out there store your data with security risks. Some directly store password, some use password protected database. More or less, each one of them has some vulnerability.
-
-But this one is truely different. The two way encryption algorithm uses SHA-256 one way hashing as the underlying security mechanism. If you wanna break it, break SHA-256 first!
-
-For this reason, I particularly suggest to either use one single password (atleast 8 characters) or store all your passwords in a file and lock it with one password which you must remember whatsoever. I myself use the latter method as I find it safe.
+The two way encryption algorithm uses SHA-256 one way hashing as the underlying security mechanism.
 
 ## Table of Contents
 
